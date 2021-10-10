@@ -63,7 +63,7 @@ class NeuralNet:
         #   metrics
         NNLog = MLPClassifier(activation=activations[0], learning_rate_init=learning_rate_selected, max_iter=max_iterations_selected, hidden_layer_sizes=(num_hidden_layers_selected,))
         NNTanh = MLPClassifier(activation=activations[1], learning_rate_init=learning_rate_selected, max_iter=max_iterations_selected, hidden_layer_sizes=(num_hidden_layers_selected,))
-        NNRelu = MLPClassifier(activation=activations[1], learning_rate_init=learning_rate_selected, max_iter=max_iterations_selected, hidden_layer_sizes=(num_hidden_layers_selected,))
+        NNRelu = MLPClassifier(activation=activations[2], learning_rate_init=learning_rate_selected, max_iter=max_iterations_selected, hidden_layer_sizes=(num_hidden_layers_selected,))
 
         #NN.fit(X_train, y_train)
         with open('output.csv', 'a', newline='') as csvfile:
@@ -81,7 +81,7 @@ class NeuralNet:
                              "Set " + temp + " Training Logistic Accuracy",
                              "Set " + temp + " Training TanH Accuracy",
                              "set " + temp + " Training ReLu Accuracy"])
-            for iter in range(max_iterations[0]):
+            for iter in range(max_iterations_selected):
                 NNLog.partial_fit(X_train, y_train, classes)
                 NNTanh.partial_fit(X_train, y_train, classes)
                 NNRelu.partial_fit(X_train, y_train, classes)
