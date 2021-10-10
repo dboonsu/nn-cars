@@ -58,7 +58,7 @@ class NeuralNet:
         num_hidden_layers = [2, 3]
         num_hidden_layers_selected = num_hidden_layers[1]
         classes = ['vgood', 'good', 'acc', 'unacc']
-
+        temp = "8"
         # Create the neural network and be sure to keep track of the performance
         #   metrics
         NNLog = MLPClassifier(activation=activations[0], learning_rate_init=learning_rate_selected, max_iter=max_iterations_selected, hidden_layer_sizes=(num_hidden_layers_selected,))
@@ -72,17 +72,30 @@ class NeuralNet:
                              " Max Iterations: " + str(max_iterations_selected),
                              " Num Hidden Layers: " + str(num_hidden_layers_selected)])
             writer.writerow(["Iteration",
-                             "Set x Logistic Accuracy",
-                             "Set x TanH Accuracy",
-                             "Set x ReLu Accuracy",
+                             "Set " + temp + " Testing Logistic Accuracy",
+                             "Set " + temp + " Testing TanH Accuracy",
+                             "Set " + temp + " Testing ReLu Accuracy",
                              "Logistic Loss",
                              "TanH Loss",
-                             "ReLu Loss"])
+                             "ReLu Loss",
+                             "Set " + temp + " Training Logistic Accuracy",
+                             "Set " + temp + " Training TanH Accuracy",
+                             "set " + temp + " Training ReLu Accuracy"])
             for iter in range(max_iterations[0]):
                 NNLog.partial_fit(X_train, y_train, classes)
                 NNTanh.partial_fit(X_train, y_train, classes)
                 NNRelu.partial_fit(X_train, y_train, classes)
-                writer.writerow([str(iter), NNLog.score(X_test, y_test), NNTanh.score(X_test, y_test), NNRelu.score(X_test, y_test), NNLog.loss_, NNTanh.loss_, NNRelu.loss_])
+                writer.writerow([str(iter),
+                                 NNLog.score(X_test, y_test),
+                                 NNTanh.score(X_test, y_test),
+                                 NNRelu.score(X_test, y_test),
+                                 NNLog.loss_,
+                                 NNTanh.loss_,
+                                 NNRelu.loss_,
+                                 NNLog.score(X_train, y_train),
+                                 NNTanh.score(X_train, y_train),
+                                 NNRelu.score(X_train, y_train)])
+
             # Plot the model history for each model in a single plot
             # model history is a plot of accuracy vs number of epochs
             # you may want to create a large sized plot to show multiple lines
