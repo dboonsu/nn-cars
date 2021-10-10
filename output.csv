@@ -1,4 +1,3 @@
-Learning Rate: 0.01, Max Iterations: 100, Num Hidden Layers: 2,,,,,,,
 Iteration,Set 1 Testing Logistic Accuracy,Set 1 Testing TanH Accuracy,Set 1 Testing ReLu Accuracy,Logistic Loss,TanH Loss,ReLu Loss,Set 1 Training Logistic Accuracy,Set 1 Training TanH Accuracy,set 1 Training ReLu Accuracy
 0,0.027777778,0.041666667,0.712962963,1.433227394,2.706676074,1.064043996,0.040926641,0.039382239,0.695752896
 1,0.712962963,0.041666667,0.712962963,1.246904895,2.369730868,0.963459603,0.695752896,0.039382239,0.695752896
